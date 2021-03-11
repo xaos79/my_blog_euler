@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Articles
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-9 ramka mx-auto mt-3">
+			{% for i in obj_art %}
+				<br>
+				<a href="{% url 'work' i.id %}">{{i.title}}</a>
+				<br>
+			{% endfor %}
+			<br>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

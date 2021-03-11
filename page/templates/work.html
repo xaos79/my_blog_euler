@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{zadacha_obj.title}}
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-9 ramka mx-auto mt-3">
+			<h3 class="text-center">{{zadacha_obj.title}}</h3>
+			<br>
+			<h6>{{zadacha_obj.description}}</h6>
+			<br>
+			<pre><code>{{zadacha_obj.text}}</code></pre>
+			<br>
+			<p class="text-right">{{zadacha_obj.data}}</p>
+			<br>
+			<br>
+			{% if lasted_comment %}
+			{% for comment in lasted_comment %}
+			<hr>
+			<strong>{{comment.person}}</strong>  {{comment.data}}
+			<br>
+			<pre><code>{{comment.text}}</code></pre>
+			<hr>
+			{% endfor %}
+			{% endif %}
+			{% if user.is_authenticated %}
+			<form method="post" action="{% url 'leave_comment' zadacha_obj.id %}">
+				{% csrf_token %}
+				<textarea name="text" placeholder="Текс" cols="80" rows="10"></textarea><br>
+				<button class="btn btn-secondary" type="submit">Напишите комментарий</button><br><br>
+			</form>
+			{% else %}
+			<p><a href="{% url 'login' %}">Войдите</a> чтобы оставлять комментарии.</p>
+			{% endif %}
+			{% endblock %}
+		</div>
+	</div>
+</div>

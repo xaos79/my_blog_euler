@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+Sign
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-8 col-sm-8 col-md-6 col-lg-5 ramka mx-auto mt-3 text-center">
+			{% if not form.is_valid %}
+				<form method="post">
+					{% csrf_token %}
+					<p>{{form|crispy}}</p>
+					<button class="btn btn-secondary" type="submit" name="reg">Зарегистрироваться</button>
+				</form>
+			{% else %}
+				<h2>Вы успешно зарегистрировались!</h2>
+				<h4><a href="{% url 'home' %}">Перейти к просмотру задач</a></h4>
+			{% endif %}
+			<br>
+		</div>
+		
+	</div>
+	
+</div>
+
+{% endblock %}

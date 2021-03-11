@@ -1,0 +1,13 @@
+.errorlist li {
+	color: red;
+	font-weight: bold;
+}
+body {
+	background-color: #EDEEF0;
+}
+.login_title {
+	color: red;
+}
+.ramka {
+	background-color: white;
+}
